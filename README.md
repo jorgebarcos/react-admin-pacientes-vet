@@ -1,4 +1,4 @@
-# react-admin-pacientes-vet
+# react-admin-pacientes-vet V.1.0
 Administrador de Pacientes React con Class y Stateless Functional Components y Bootswatch
 
 ## link 
