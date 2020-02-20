@@ -1,65 +1,23 @@
-import React, { Component } from 'react';
-import './bootstrap.min.css';
-import Header from './components/Header';
-import NuevaCita from './components/NuevaCita';
-import ListaCitas from './components/ListaCitas';
+import React, {Fragment} from 'react';
+import Formulario from './components/Formulario';
 
-class App extends Component {
-	state = {
-		citas: []
-	};
-	// Cuando la aplicacion carga
-	componentDidMount() {
-		const citasLS = localStorage.getItem('citas');
-		if (citasLS) {
-			this.setState({
-				citas: JSON.parse(citasLS)
-			});
-		}
-	}
+function App() {
+  return (
+    <Fragment>
+      <h1>Administrador de Pacientes</h1>
 
-	// cuando eliminamos o agregamos una nueva cita
-	componentDidUpdate() {
-		localStorage.setItem('citas', JSON.stringify(this.state.citas));
-	}
-
-	crearNuevaCita = (datos) => {
-		// copiar el state actual
-		const citas = [ ...this.state.citas, datos ];
-		// agregar el nuevo state
-		this.setState({
-			citas
-		});
-	};
-
-	// Elimina las citas del state
-	eliminarCita = (id) => {
-		// Tomar copia del state
-		const citasActuales = [ ...this.state.citas ];
-		// utilizar filter para sacar el elemento @id del arreglo
-		const citas = citasActuales.filter((cita) => cita.id !== id);
-
-		// actualizar el state
-
-		this.setState({
-			citas
-		});
-	};
-	render() {
-		return (
-			<div className="container">
-				<Header titulo="Administrador Pacientes Veterinaria" />
-				<div className="row">
-					<div className="col-md-10 mx-auto">
-						<NuevaCita crearNuevaCita={this.crearNuevaCita} />
-					</div>
-					<div className="mt-5 col-md-10 mx-auto">
-						<ListaCitas citas={this.state.citas} eliminarCita={this.eliminarCita} />
-					</div>
-				</div>
-			</div>
-		);
-	}
+      <div className="container">
+        <div className="roe">
+          <div className="one-half column">
+            <Formulario />
+          </div>
+          <div className="one-half column">
+            2
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
 }
 
 export default App;
